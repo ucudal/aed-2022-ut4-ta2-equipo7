@@ -5,6 +5,8 @@ public class TElementoAB<T> implements IElementoAB<T> {
     private TElementoAB hijoDer;
     private T datos;
 
+    private static int invInsertar = 0;
+
     /**
      * @param unaEtiqueta
      * @param unosDatos
@@ -41,7 +43,32 @@ public class TElementoAB<T> implements IElementoAB<T> {
     }
 
     public boolean insertar(TElementoAB<T> elemento) {
-        if (elemento.getEtiqueta().compareTo(etiqueta) )
+        invInsertar += 1;
+
+        int comp = elemento.getEtiqueta().compareTo(etiqueta);
+        if (comp < 0) {
+            if (hijoIzq != null) {
+                return hijoIzq.insertar(elemento);
+            } else {
+                hijoIzq = elemento;
+                System.out.println("Contador insertar(): " + invInsertar);
+                invInsertar = 0;
+                return true;
+            }
+        } else if (comp > 0) {
+             if (hijoDer != null) {
+                return hijoDer.insertar(elemento);
+            } else {
+                hijoDer = elemento;
+                System.out.println("Contador insertar(): " + invInsertar);
+                invInsertar = 0;
+                return true;
+            }
+        } else {
+			System.out.println("Contador insertar(): " + invInsertar);
+            invInsertar = 0;
+            return false;
+        }
     }
 
 	@Override
@@ -51,12 +78,34 @@ public class TElementoAB<T> implements IElementoAB<T> {
 
 	@Override
 	public String preOrden() {
-		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String resultado = etiqueta.toString();
+
+        if (hijoIzq != null) {
+            resultado += " - " + hijoIzq.preOrden();
+        }
+
+        if (hijoDer != null) {
+            resultado += " - " + hijoDer.preOrden();
+        }
+
+        return resultado;
 	}
 
 	@Override
 	public String inOrden() {
-		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String resultado = "";
+
+        if (hijoIzq != null) {
+            resultado += hijoIzq.inOrden();
+        }
+
+        resultado += etiqueta.toString();
+
+        if (hijoDer != null) {
+            resultado += hijoDer.inOrden();
+        }
+
+        return resultado;
 	}
 
 	@Override

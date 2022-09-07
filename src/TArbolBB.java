@@ -13,7 +13,13 @@ public class TArbolBB<T> implements IArbolBB<T> {
 
 	@Override
 	public boolean insertar(TElementoAB<T> unElemento) {
-		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+		if (raiz == null) {
+			raiz = unElemento;
+			System.out.println("Contador insertar(): 0");
+			return true;
+		} else {
+			return raiz.insertar(unElemento);
+		}
 	}
 
 	@Override
@@ -23,12 +29,20 @@ public class TArbolBB<T> implements IArbolBB<T> {
 
 	@Override
 	public String preOrden() {
-		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+		if (raiz != null) {
+			return raiz.preOrden();
+		} else {
+			return "";
+		}
 	}
 
 	@Override
 	public String inOrden() {
-		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+		if (raiz != null) {
+			return raiz.inOrden();
+		} else {
+			return "";
+		}
 	}
 
 	@Override
