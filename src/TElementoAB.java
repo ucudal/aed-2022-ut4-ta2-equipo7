@@ -96,13 +96,21 @@ public class TElementoAB<T> implements IElementoAB<T> {
         String resultado = "";
 
         if (hijoIzq != null) {
-            resultado += hijoIzq.inOrden();
+            resultado = hijoIzq.inOrden();
+
+            if (resultado != "") {
+                resultado += " - ";
+            }
         }
 
         resultado += etiqueta.toString();
 
         if (hijoDer != null) {
-            resultado += hijoDer.inOrden();
+            String der = hijoDer.inOrden();
+
+            if (der != "") {
+                resultado += " - " + der;
+            }
         }
 
         return resultado;
