@@ -73,7 +73,15 @@ public class TElementoAB<T> implements IElementoAB<T> {
 
 	@Override
 	public TElementoAB<T> buscar(Comparable unaEtiqueta) {
-		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+		if (getEtiqueta().compareTo(unaEtiqueta) == 0){
+                    return this;
+                }
+                if(getHijoIzq() != null && getEtiqueta().compareTo(unaEtiqueta) < 0){
+                    return getHijoIzq().buscar(unaEtiqueta);
+                } else if(getHijoDer() != null && getEtiqueta().compareTo(unaEtiqueta) > 0){
+                    return getHijoDer().buscar(unaEtiqueta);
+                }
+                return null;
 	}
 
 	@Override

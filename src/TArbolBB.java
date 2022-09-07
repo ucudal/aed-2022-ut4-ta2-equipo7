@@ -24,7 +24,11 @@ public class TArbolBB<T> implements IArbolBB<T> {
 
 	@Override
 	public TElementoAB<T> buscar(Comparable unaEtiqueta) {
-		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+		if( raiz.equals(unaEtiqueta)){
+                    return raiz;
+                } else {
+                    return raiz.buscar(unaEtiqueta);
+                }
 	}
 
 	@Override

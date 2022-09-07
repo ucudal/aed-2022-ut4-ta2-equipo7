@@ -16,6 +16,16 @@ public class Main {
             var valor = Integer.parseInt(clave);
             arbol.insertar(new TElementoAB<Integer>(valor, valor));
         }
+        
+        for (String linea : ManejadorArchivosGenerico.leerArchivo("consultaPrueba.txt")) {
+            Comparable etiqueta = Integer.parseInt(linea);
+            if(arbol.buscar(etiqueta) == null){
+                System.out.println("Clave no encontrada");
+            } else {
+                System.out.println("Clave encontrada");
+                
+            }
+        }
 
 	System.out.println("PREORDEN: " + arbol.preOrden());
 	System.out.println("ENORDEN: " + arbol.inOrden());
