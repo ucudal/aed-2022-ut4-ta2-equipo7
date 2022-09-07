@@ -1,3 +1,4 @@
+
 public class TElementoAB<T> implements IElementoAB<T> {
 
     private Comparable etiqueta;
@@ -31,11 +32,11 @@ public class TElementoAB<T> implements IElementoAB<T> {
     }
 
     public void setHijoIzq(TElementoAB<T> elemento) {
-         hijoIzq = elemento;
+        hijoIzq = elemento;
     }
 
     public void setHijoDer(TElementoAB<T> elemento) {
-         hijoDer = elemento;
+        hijoDer = elemento;
     }
 
     public T getDatos() {
@@ -56,7 +57,7 @@ public class TElementoAB<T> implements IElementoAB<T> {
                 return true;
             }
         } else if (comp > 0) {
-             if (hijoDer != null) {
+            if (hijoDer != null) {
                 return hijoDer.insertar(elemento);
             } else {
                 hijoDer = elemento;
@@ -65,27 +66,28 @@ public class TElementoAB<T> implements IElementoAB<T> {
                 return true;
             }
         } else {
-			System.out.println("Contador insertar(): " + invInsertar);
+            System.out.println("Contador insertar(): " + invInsertar);
             invInsertar = 0;
             return false;
         }
     }
 
-	@Override
-	public TElementoAB<T> buscar(Comparable unaEtiqueta) {
-		if (getEtiqueta().compareTo(unaEtiqueta) == 0){
-                    return this;
-                }
-                if(getHijoIzq() != null && getEtiqueta().compareTo(unaEtiqueta) < 0){
-                    return getHijoIzq().buscar(unaEtiqueta);
-                } else if(getHijoDer() != null && getEtiqueta().compareTo(unaEtiqueta) > 0){
-                    return getHijoDer().buscar(unaEtiqueta);
-                }
-                return null;
-	}
+    @Override
+    public TElementoAB<T> buscar(Comparable unaEtiqueta) {
+        if (getEtiqueta().equals(unaEtiqueta)) {
+            return this;
+        }
+        if (getHijoIzq() != null && unaEtiqueta.compareTo(getEtiqueta()) < 0) {
+            return getHijoIzq().buscar(unaEtiqueta);
+        } 
+        if (getHijoDer() != null && unaEtiqueta.compareTo(getEtiqueta()) > 0) {
+            return getHijoDer().buscar(unaEtiqueta);
+        }
+        return null;
+    }
 
-	@Override
-	public String preOrden() {
+    @Override
+    public String preOrden() {
         String resultado = etiqueta.toString();
 
         if (hijoIzq != null) {
@@ -97,10 +99,10 @@ public class TElementoAB<T> implements IElementoAB<T> {
         }
 
         return resultado;
-	}
+    }
 
-	@Override
-	public String inOrden() {
+    @Override
+    public String inOrden() {
         String resultado = "";
 
         if (hijoIzq != null) {
@@ -122,15 +124,15 @@ public class TElementoAB<T> implements IElementoAB<T> {
         }
 
         return resultado;
-	}
+    }
 
-	@Override
-	public String postOrden() {
-		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-	}
+    @Override
+    public String postOrden() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
-	@Override
-	public TElementoAB eliminar(Comparable unaEtiqueta) {
-		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-	}
+    @Override
+    public TElementoAB eliminar(Comparable unaEtiqueta) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
